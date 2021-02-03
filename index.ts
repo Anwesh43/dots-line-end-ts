@@ -1,11 +1,12 @@
 const w : number = window.innerWidth 
 const h : number = window.innerHeight 
-const parts : number = 3 
+const parts : number = 2
 const balls : number = 3 
 const scGap : number = 0.02 / parts 
 const strokeFactor : number = 90 
-const sizeFactor : number = 9.9 
+const sizeFactor : number = 18.9 
 const delay : number = 20 
+const gapFactor : number = 5
 const colors : Array<string> = [
     "#f44336",
     "#3F51B5",
@@ -54,8 +55,8 @@ class DrawingUtil {
         context.translate(w / 2, h / 2)
         for (var j = 0; j < balls; j++) {
             context.save()
-            context.translate(-2 * r + 2 * r * j, 0)
-            const x : number = (2 * r - 2 * r * j) * sf2
+            context.translate(-gapFactor * r + gapFactor * r * j, 0)
+            const x : number = (gapFactor * r - gapFactor * j * r) * sf2
             const y : number = (h * 0.5 - r) * sf2
             DrawingUtil.drawCircle(context, x, y,  r * sf1)
             DrawingUtil.drawLine(context, 0, 0, x, y)
@@ -182,7 +183,7 @@ class DTENode {
     }
 
     getNext(dir : number, cb : Function) : DTENode {
-        var curr : DTENode = this.next 
+        var curr : DTENode = this.prev 
         if (dir == 1) {
             curr = this.next 
         }
