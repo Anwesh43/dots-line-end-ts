@@ -45,7 +45,7 @@ class DrawingUtil {
         context.fill()
     }
 
-    static drawDotToEn(context : CanvasRenderingContext2D, scale : number) {
+    static drawDotToEnd(context : CanvasRenderingContext2D, scale : number) {
         const sf : number = ScaleUtil.sinify(scale)
         const sf1 : number = ScaleUtil.divideScale(sf, 0, parts)
         const sf2 : number = ScaleUtil.divideScale(sf, 1, parts)
@@ -69,7 +69,7 @@ class DrawingUtil {
         context.lineWidth = Math.min(w, h) / strokeFactor 
         context.strokeStyle = colors[i]
         context.fillStyle = colors[i]
-        DrawingUtil.drawDTENode(context, i, scale)
+        DrawingUtil.drawDotToEnd(context, scale)
     }
 }
 
