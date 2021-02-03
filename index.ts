@@ -212,3 +212,25 @@ class DotsToEnd {
         this.curr.startUpdating(cb)
     }
 }
+
+class Renderer {
+
+    dte : DotsToEnd = new DotsToEnd()
+    animator : Animator = new Animator()
+
+    render(context : CanvasRenderingContext2D) {
+        this.dte.draw(context)
+    }
+
+    handleTap(cb : Function) {
+        this.dte.startUpdating(() => {
+            this.animator.start(() => {
+                cb()
+                this.dte.update(() => {
+                    this.animator.stop()
+                    cb()
+                })
+            })
+        })
+    }
+}
